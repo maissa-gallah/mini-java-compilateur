@@ -72,16 +72,22 @@
 
 	
 
-#include <stdio.h>	
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>	
+#include "semantic.c"
  			
 int yyerror(char const *msg);	
 int yylex(void);
 extern int line;
 
+int nbr_args = 0;
+int nbr_param = 0;
+
 
 
 /* Line 189 of yacc.c  */
-#line 85 "exemple.tab.c"
+#line 91 "exemple.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -158,7 +164,7 @@ typedef int YYSTYPE;
 
 
 /* Line 264 of yacc.c  */
-#line 162 "exemple.tab.c"
+#line 168 "exemple.tab.c"
 
 #ifdef short
 # undef short
@@ -529,21 +535,21 @@ static const yytype_int8 yyrhs[] =
 };
 
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
-static const yytype_uint8 yyrline[] =
+static const yytype_uint16 yyrline[] =
 {
-       0,    62,    62,    68,    69,    72,    73,    74,    75,    76,
-      78,    79,    80,    81,    84,    85,    87,    88,    90,    91,
-      93,    94,    95,    97,    98,   100,   101,   102,   104,   105,
-     107,   108,   109,   110,   111,   112,   113,   114,   115,   120,
-     121,   122,   123,   124,   125,   126,   129,   130,   131,   132,
-     133,   134,   135,   138,   139,   140,   141,   142,   143,   144,
-     149,   150,   151,   152,   153,   154,   155,   156,   158,   159,
-     160,   161,   162,   164,   165,   166,   167,   168,   170,   171,
-     172,   173,   175,   176,   177,   178,   179,   180,   183,   184,
-     186,   187,   188,   190,   191,   192,   194,   195,   196,   197,
-     198,   201,   202,   203,   204,   205,   207,   208,   209,   210,
-     211,   213,   214,   215,   216,   217,   219,   220,   222,   223,
-     224,   227,   228,   230,   231,   232,   235
+       0,    68,    68,    70,    71,    74,    76,    77,    78,    79,
+      81,    82,    83,    84,    87,    88,    90,    91,    93,    94,
+      96,   100,   101,   103,   104,   106,   111,   112,   114,   119,
+     121,   127,   128,   129,   130,   131,   132,   133,   134,   139,
+     140,   141,   142,   143,   144,   145,   148,   149,   150,   151,
+     152,   153,   154,   157,   158,   159,   160,   161,   162,   163,
+     168,   169,   170,   171,   172,   173,   174,   175,   177,   178,
+     179,   180,   181,   183,   184,   185,   186,   187,   189,   190,
+     191,   192,   194,   195,   196,   197,   198,   199,   202,   207,
+     209,   210,   211,   213,   214,   215,   217,   224,   225,   226,
+     227,   230,   231,   232,   233,   234,   236,   237,   238,   239,
+     240,   242,   243,   244,   245,   246,   248,   249,   251,   252,
+     253,   256,   260,   262,   267,   268,   271
 };
 #endif
 
@@ -1805,528 +1811,621 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-        case 6:
+        case 5:
 
 /* Line 1455 of yacc.c  */
-#line 73 "exemple.y"
+#line 75 "exemple.y"
+    {verif_var_dec_bien_init_use();}
+    break;
+
+  case 6:
+
+/* Line 1455 of yacc.c  */
+#line 76 "exemple.y"
     {yyerror (" erreur mot cle class errone dans la line : "); YYABORT;}
     break;
 
   case 7:
 
 /* Line 1455 of yacc.c  */
-#line 74 "exemple.y"
+#line 77 "exemple.y"
     {yyerror (" erreur identifier errone dans la line : "); YYABORT;}
     break;
 
   case 8:
 
 /* Line 1455 of yacc.c  */
-#line 75 "exemple.y"
+#line 78 "exemple.y"
     {yyerror (" erreur acolade ouvarnte  manquant dans la line : "); YYABORT;}
     break;
 
   case 9:
 
 /* Line 1455 of yacc.c  */
-#line 76 "exemple.y"
+#line 79 "exemple.y"
     {yyerror ("  erreur acolade FERMANT  manquant dans la line : "); YYABORT;}
     break;
 
   case 12:
 
 /* Line 1455 of yacc.c  */
-#line 80 "exemple.y"
+#line 83 "exemple.y"
     {yyerror (" mot cle EXTENDS manquant ou bien errone dans la line : "); YYABORT;}
     break;
 
   case 13:
 
 /* Line 1455 of yacc.c  */
-#line 81 "exemple.y"
+#line 84 "exemple.y"
     {yyerror ("erreur identifier errone dans la line :"); YYABORT;}
+    break;
+
+  case 20:
+
+/* Line 1455 of yacc.c  */
+#line 97 "exemple.y"
+    {
+                                insert_declaration((yyvsp[(2) - (3)]), "global", (yyvsp[(1) - (3)]), 0, 0 , 0);
+                        ;}
     break;
 
   case 21:
 
 /* Line 1455 of yacc.c  */
-#line 94 "exemple.y"
+#line 100 "exemple.y"
     {yyerror ("erreur identifier errone dans la line :"); YYABORT;}
     break;
 
   case 22:
 
 /* Line 1455 of yacc.c  */
-#line 95 "exemple.y"
+#line 101 "exemple.y"
     {yyerror ("POINT_VIRGULE  manquant dans la line :"); YYABORT;}
+    break;
+
+  case 25:
+
+/* Line 1455 of yacc.c  */
+#line 107 "exemple.y"
+    {
+                                insert_declaration((yyvsp[(3) - (3)]),"args","variable",0,0,0);
+                                nbr_args++;
+                        ;}
     break;
 
   case 26:
 
 /* Line 1455 of yacc.c  */
-#line 101 "exemple.y"
+#line 111 "exemple.y"
     {yyerror ("VIRGULE manquant dans la line :"); YYABORT;}
     break;
 
   case 27:
 
 /* Line 1455 of yacc.c  */
-#line 102 "exemple.y"
+#line 112 "exemple.y"
     {yyerror ("identifier errone dans la line :"); YYABORT;}
+    break;
+
+  case 28:
+
+/* Line 1455 of yacc.c  */
+#line 115 "exemple.y"
+    {
+                                insert_declaration((yyvsp[(2) - (3)]),"args","variable",0,0,0);
+                                nbr_args++;
+                        ;}
+    break;
+
+  case 30:
+
+/* Line 1455 of yacc.c  */
+#line 122 "exemple.y"
+    {
+                                insert_declaration((yyvsp[(3) - (13)]),"global","methode",0,0,nbr_args);
+                                nbr_args = 0;
+
+                        ;}
     break;
 
   case 31:
 
 /* Line 1455 of yacc.c  */
-#line 108 "exemple.y"
+#line 127 "exemple.y"
     {yyerror ("mot clee class manquant ou errone dans la line :"); YYABORT;}
     break;
 
   case 32:
 
 /* Line 1455 of yacc.c  */
-#line 109 "exemple.y"
+#line 128 "exemple.y"
     {yyerror ("erreur identifier errone dans la line :"); YYABORT;}
     break;
 
   case 33:
 
 /* Line 1455 of yacc.c  */
-#line 110 "exemple.y"
+#line 129 "exemple.y"
     {yyerror ("erreur parenthese ouvarnte  manquante dans la line :"); YYABORT;}
     break;
 
   case 34:
 
 /* Line 1455 of yacc.c  */
-#line 111 "exemple.y"
+#line 130 "exemple.y"
     {yyerror ("erreur parenthese fermante  manquante dans la line :"); YYABORT;}
     break;
 
   case 35:
 
 /* Line 1455 of yacc.c  */
-#line 112 "exemple.y"
+#line 131 "exemple.y"
     {yyerror ("acolade ouvrant  manquant dans la line :"); YYABORT;}
     break;
 
   case 36:
 
 /* Line 1455 of yacc.c  */
-#line 113 "exemple.y"
+#line 132 "exemple.y"
     {yyerror ("mot clee return manquant ou errone dans la line :"); YYABORT;}
     break;
 
   case 37:
 
 /* Line 1455 of yacc.c  */
-#line 114 "exemple.y"
+#line 133 "exemple.y"
     {yyerror ("POINT_VIRGULE manquant  dans la line :"); YYABORT;}
     break;
 
   case 38:
 
 /* Line 1455 of yacc.c  */
-#line 115 "exemple.y"
+#line 134 "exemple.y"
     {yyerror ("acolade fermant  manquante dans la line :"); YYABORT;}
     break;
 
   case 40:
 
 /* Line 1455 of yacc.c  */
-#line 121 "exemple.y"
+#line 140 "exemple.y"
     {yyerror ("erreur tabulation ouvrante manquante dans la line :"); YYABORT;}
     break;
 
   case 41:
 
 /* Line 1455 of yacc.c  */
-#line 122 "exemple.y"
+#line 141 "exemple.y"
     {yyerror ("erreur tabulation fermante manquante dans la line :"); YYABORT;}
     break;
 
   case 45:
 
 /* Line 1455 of yacc.c  */
-#line 126 "exemple.y"
+#line 145 "exemple.y"
     {yyerror ("erreur de type dans la line :"); YYABORT;}
     break;
 
   case 47:
 
 /* Line 1455 of yacc.c  */
-#line 130 "exemple.y"
+#line 149 "exemple.y"
     {yyerror ("mot cle CLASS errone ou bien manquant on line : "); YYABORT;}
     break;
 
   case 48:
 
 /* Line 1455 of yacc.c  */
-#line 131 "exemple.y"
+#line 150 "exemple.y"
     {yyerror (" erreur identifier errone dans la line : "); YYABORT;}
     break;
 
   case 49:
 
 /* Line 1455 of yacc.c  */
-#line 132 "exemple.y"
+#line 151 "exemple.y"
     {yyerror (" acolade ouvrant manquant dans la line: "); YYABORT;}
     break;
 
   case 50:
 
 /* Line 1455 of yacc.c  */
-#line 133 "exemple.y"
+#line 152 "exemple.y"
     {yyerror (" acolade ouvrant manquant dans la line: "); YYABORT;}
     break;
 
   case 51:
 
 /* Line 1455 of yacc.c  */
-#line 134 "exemple.y"
+#line 153 "exemple.y"
     {yyerror ("acolade fermant  manquant dans la line:"); YYABORT;}
     break;
 
   case 52:
 
 /* Line 1455 of yacc.c  */
-#line 135 "exemple.y"
+#line 154 "exemple.y"
     {yyerror ("acolade fermant  manquant dans la line: "); YYABORT;}
     break;
 
   case 54:
 
 /* Line 1455 of yacc.c  */
-#line 139 "exemple.y"
+#line 158 "exemple.y"
     {yyerror (" parenthese ouvrante manquante dans la line: "); YYABORT;}
     break;
 
   case 55:
 
 /* Line 1455 of yacc.c  */
-#line 140 "exemple.y"
+#line 159 "exemple.y"
     {yyerror (" erreur mot cle String errone dans la line:  "); YYABORT;}
     break;
 
   case 56:
 
 /* Line 1455 of yacc.c  */
-#line 141 "exemple.y"
+#line 160 "exemple.y"
     {yyerror (" tabulation ouvrante manquante dans la line: "); YYABORT;}
     break;
 
   case 57:
 
 /* Line 1455 of yacc.c  */
-#line 142 "exemple.y"
+#line 161 "exemple.y"
     {yyerror (" tabulation fermante manquante dans la line: "); YYABORT;}
     break;
 
   case 58:
 
 /* Line 1455 of yacc.c  */
-#line 143 "exemple.y"
+#line 162 "exemple.y"
     {yyerror (" erreur identifier errone dans la line : "); YYABORT;}
     break;
 
   case 59:
 
 /* Line 1455 of yacc.c  */
-#line 144 "exemple.y"
+#line 163 "exemple.y"
     {yyerror (" parenthese  fermant manquant dans la line: "); YYABORT;}
     break;
 
   case 64:
 
 /* Line 1455 of yacc.c  */
-#line 153 "exemple.y"
+#line 172 "exemple.y"
     {yyerror ("mot cle IF errone ou bien manquant on line : "); YYABORT;}
     break;
 
   case 65:
 
 /* Line 1455 of yacc.c  */
-#line 154 "exemple.y"
+#line 173 "exemple.y"
     {yyerror (" parenthese  ouvrante manquant dans la line: "); YYABORT;}
     break;
 
   case 66:
 
 /* Line 1455 of yacc.c  */
-#line 155 "exemple.y"
+#line 174 "exemple.y"
     {yyerror (" parenthese  fermante manquant dans la line: "); YYABORT;}
     break;
 
   case 67:
 
 /* Line 1455 of yacc.c  */
-#line 156 "exemple.y"
+#line 175 "exemple.y"
     {yyerror ("mot cle ELSE errone ou bien manquant on line : "); YYABORT;}
     break;
 
   case 70:
 
 /* Line 1455 of yacc.c  */
-#line 160 "exemple.y"
+#line 179 "exemple.y"
     {yyerror ("mot cle WHILE errone ou bien manquant on line : "); YYABORT;}
     break;
 
   case 71:
 
 /* Line 1455 of yacc.c  */
-#line 161 "exemple.y"
+#line 180 "exemple.y"
     {yyerror (" parenthese  ouvrante manquant dans la line: "); YYABORT;}
     break;
 
   case 72:
 
 /* Line 1455 of yacc.c  */
-#line 162 "exemple.y"
+#line 181 "exemple.y"
     {yyerror (" parenthese  fermante manquant dans la line: "); YYABORT;}
     break;
 
   case 74:
 
 /* Line 1455 of yacc.c  */
-#line 165 "exemple.y"
+#line 184 "exemple.y"
     {yyerror ("system.out.println errone ou bien manquant on line : "); YYABORT;}
     break;
 
   case 75:
 
 /* Line 1455 of yacc.c  */
-#line 166 "exemple.y"
+#line 185 "exemple.y"
     {yyerror (" parenthese  ouvrante manquant dans la line: "); YYABORT;}
     break;
 
   case 76:
 
 /* Line 1455 of yacc.c  */
-#line 167 "exemple.y"
+#line 186 "exemple.y"
     {yyerror (" parenthese  fermante manquant dans la line: "); YYABORT;}
     break;
 
   case 77:
 
 /* Line 1455 of yacc.c  */
-#line 168 "exemple.y"
+#line 187 "exemple.y"
     {yyerror ("POINT_VIRGULE  manquant dans la line :"); YYABORT;}
+    break;
+
+  case 78:
+
+/* Line 1455 of yacc.c  */
+#line 189 "exemple.y"
+    {printf("hiii");init_var((yyvsp[(1) - (4)]));}
     break;
 
   case 79:
 
 /* Line 1455 of yacc.c  */
-#line 171 "exemple.y"
+#line 190 "exemple.y"
     {yyerror ("erreur identifier errone dans la line :"); YYABORT;}
     break;
 
   case 80:
 
 /* Line 1455 of yacc.c  */
-#line 172 "exemple.y"
+#line 191 "exemple.y"
     {yyerror ("AFFECTATION errone dans la line :"); YYABORT;}
     break;
 
   case 81:
 
 /* Line 1455 of yacc.c  */
-#line 173 "exemple.y"
+#line 192 "exemple.y"
     {yyerror ("POINT_VIRGULE  manquant dans la line :"); YYABORT;}
     break;
 
   case 83:
 
 /* Line 1455 of yacc.c  */
-#line 176 "exemple.y"
+#line 195 "exemple.y"
     {yyerror ("erreur identifier errone dans la line :"); YYABORT;}
     break;
 
   case 84:
 
 /* Line 1455 of yacc.c  */
-#line 177 "exemple.y"
+#line 196 "exemple.y"
     {yyerror ("erreur tabulation ouvrante manquante dans la line :"); YYABORT;}
     break;
 
   case 85:
 
 /* Line 1455 of yacc.c  */
-#line 178 "exemple.y"
+#line 197 "exemple.y"
     {yyerror ("erreur tabulation fermante manquante dans la line :"); YYABORT;}
     break;
 
   case 86:
 
 /* Line 1455 of yacc.c  */
-#line 179 "exemple.y"
+#line 198 "exemple.y"
     {yyerror ("AFFECTATION errone dans la line :"); YYABORT;}
     break;
 
   case 87:
 
 /* Line 1455 of yacc.c  */
-#line 180 "exemple.y"
+#line 199 "exemple.y"
     {yyerror ("POINT_VIRGULE  manquant dans la line :"); YYABORT;}
+    break;
+
+  case 88:
+
+/* Line 1455 of yacc.c  */
+#line 203 "exemple.y"
+    {       printf("erreur de calcul les val ne sont pas initalise");
+                                use_var((yyvsp[(1) - (3)])); 
+                                use_var((yyvsp[(3) - (3)]));
+                        ;}
     break;
 
   case 89:
 
 /* Line 1455 of yacc.c  */
-#line 184 "exemple.y"
+#line 207 "exemple.y"
     {yyerror ("operateur manquant dans la line :"); YYABORT;}
     break;
 
   case 91:
 
 /* Line 1455 of yacc.c  */
-#line 187 "exemple.y"
+#line 210 "exemple.y"
     {yyerror ("erreur tabulation ouvrante manquante dans la line :"); YYABORT;}
     break;
 
   case 92:
 
 /* Line 1455 of yacc.c  */
-#line 188 "exemple.y"
+#line 211 "exemple.y"
     {yyerror ("erreur tabulation fermante manquante dans la line :"); YYABORT;}
     break;
 
   case 94:
 
 /* Line 1455 of yacc.c  */
-#line 191 "exemple.y"
+#line 214 "exemple.y"
     {yyerror ("POINT manquant dans la line :"); YYABORT;}
     break;
 
   case 95:
 
 /* Line 1455 of yacc.c  */
-#line 192 "exemple.y"
+#line 215 "exemple.y"
     {yyerror ("mot cle LENGTH manquant dans la line :"); YYABORT;}
+    break;
+
+  case 96:
+
+/* Line 1455 of yacc.c  */
+#line 218 "exemple.y"
+    {
+                                printf("verif args %d", nbr_param);
+                                verif_args((yyvsp[(3) - (6)]),nbr_param);
+                                nbr_param = 0;
+                        ;}
     break;
 
   case 97:
 
 /* Line 1455 of yacc.c  */
-#line 195 "exemple.y"
+#line 224 "exemple.y"
     {yyerror ("POINT manquant dans la line :"); YYABORT;}
     break;
 
   case 98:
 
 /* Line 1455 of yacc.c  */
-#line 196 "exemple.y"
+#line 225 "exemple.y"
     {yyerror ("erreur identifier errone dans la line :"); YYABORT;}
     break;
 
   case 99:
 
 /* Line 1455 of yacc.c  */
-#line 197 "exemple.y"
+#line 226 "exemple.y"
     {yyerror ("erreur parenthese ouvarnte  manquante dans la line :"); YYABORT;}
     break;
 
   case 100:
 
 /* Line 1455 of yacc.c  */
-#line 198 "exemple.y"
+#line 227 "exemple.y"
     {yyerror ("erreur parenthese fermante  manquante dans la line :"); YYABORT;}
     break;
 
   case 105:
 
 /* Line 1455 of yacc.c  */
-#line 205 "exemple.y"
+#line 234 "exemple.y"
     {yyerror ("erreur dans la line :"); YYABORT;}
     break;
 
   case 107:
 
 /* Line 1455 of yacc.c  */
-#line 208 "exemple.y"
+#line 237 "exemple.y"
     {yyerror (" mot cle NEW manquant ou bien errone dans la line : "); YYABORT;}
     break;
 
   case 108:
 
 /* Line 1455 of yacc.c  */
-#line 209 "exemple.y"
+#line 238 "exemple.y"
     {yyerror (" mot cle int manquant ou bien errone dans la line : "); YYABORT;}
     break;
 
   case 109:
 
 /* Line 1455 of yacc.c  */
-#line 210 "exemple.y"
+#line 239 "exemple.y"
     {yyerror (" erreur acolade ouvarnte  manquante dans la line : "); YYABORT;}
     break;
 
   case 110:
 
 /* Line 1455 of yacc.c  */
-#line 211 "exemple.y"
+#line 240 "exemple.y"
     {yyerror (" erreur acolade fermante  manquante dans la line : "); YYABORT;}
     break;
 
   case 112:
 
 /* Line 1455 of yacc.c  */
-#line 214 "exemple.y"
+#line 243 "exemple.y"
     {yyerror (" mot cle NEW manquant ou bien errone dans la line : "); YYABORT;}
     break;
 
   case 113:
 
 /* Line 1455 of yacc.c  */
-#line 215 "exemple.y"
+#line 244 "exemple.y"
     {yyerror (" erreur identifier errone dans la line : "); YYABORT;}
     break;
 
   case 114:
 
 /* Line 1455 of yacc.c  */
-#line 216 "exemple.y"
+#line 245 "exemple.y"
     {yyerror ("erreur parenthese ouvarnte  manquante dans la line :"); YYABORT;}
     break;
 
   case 115:
 
 /* Line 1455 of yacc.c  */
-#line 217 "exemple.y"
+#line 246 "exemple.y"
     {yyerror ("erreur parenthese fermante  manquante dans la line :"); YYABORT;}
     break;
 
   case 117:
 
 /* Line 1455 of yacc.c  */
-#line 220 "exemple.y"
+#line 249 "exemple.y"
     {yyerror ("erreur dans la line :"); YYABORT;}
     break;
 
   case 119:
 
 /* Line 1455 of yacc.c  */
-#line 223 "exemple.y"
+#line 252 "exemple.y"
     {yyerror ("erreur parenthese ouvarnte  manquante dans la line :"); YYABORT;}
     break;
 
   case 120:
 
 /* Line 1455 of yacc.c  */
-#line 224 "exemple.y"
+#line 253 "exemple.y"
     {yyerror ("erreur parenthese fermante  manquante dans la line :"); YYABORT;}
+    break;
+
+  case 121:
+
+/* Line 1455 of yacc.c  */
+#line 257 "exemple.y"
+    {
+                                nbr_param++;
+                        ;}
+    break;
+
+  case 123:
+
+/* Line 1455 of yacc.c  */
+#line 263 "exemple.y"
+    {
+                                nbr_param++;
+                        ;}
     break;
 
   case 124:
 
 /* Line 1455 of yacc.c  */
-#line 231 "exemple.y"
+#line 267 "exemple.y"
     {yyerror ("erreur VIRGULE manquante dans la line :"); YYABORT;}
     break;
 
 
 
 /* Line 1455 of yacc.c  */
-#line 2330 "exemple.tab.c"
+#line 2429 "exemple.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -2538,7 +2637,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 243 "exemple.y"
+#line 279 "exemple.y"
  
 
 int yyerror(char const *msg) {

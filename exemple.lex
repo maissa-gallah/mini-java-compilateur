@@ -5,8 +5,9 @@
  		
  #include "exemple.tab.h"	                                                                         	
  /* Local stuff we need here... */	
-#include <math.h>	
+#include <math.h>
 
+#define YYSTYPE char*
 int line =1;
  			
 %}
@@ -48,67 +49,67 @@ COMMENT_BLOC_ouvrant 	   {comment_ouvrant}([^*]|\*+[^*/])*\*+
 
 
 "\n" 			                                 line++;
-"class"										     return CLASS;
-"public static void main"						 return PSVM;
-"public"							   		     return PUBLIC;
-"static"									     return STATIC;
-"void"										     return VOID;
-"main"										     return MAIN;
-"extends"									     return EXTENDS;
-"return"									     return RETURN;
-"if"										     return IF;
-"else"										     return ELSE;
-"while"										     return WHILE;
-"System.out.println"								     return PRINT;
-"length"								             return LENGTH;
-"this"										     return THIS;
-"new"										     return NEW;
-"."										     return POINT;
-";"										     return POINT_VIRGULE;
-","											return VIRGULE;
+"class"										     { yylval = (int)strdup(yytext); return CLASS; }
+"public static void main"						 { yylval = (int)strdup(yytext); return PSVM; }
+"public"							   		     { yylval = (int)strdup(yytext); return PUBLIC; }
+"static"									     { yylval = (int)strdup(yytext); return STATIC; }
+"void"										     { yylval = (int)strdup(yytext); return VOID;}
+"main"										     { yylval = (int)strdup(yytext); return MAIN;}
+"extends"									     { yylval = (int)strdup(yytext); return EXTENDS;}
+"return"									     { yylval = (int)strdup(yytext); return RETURN;}
+"if"										     { yylval = (int)strdup(yytext); return IF;}
+"else"										     { yylval = (int)strdup(yytext); return ELSE;}
+"while"										     { yylval = (int)strdup(yytext); return WHILE;}
+"System.out.println"							{ yylval = (int)strdup(yytext);	     return PRINT;}
+"length"								         { yylval = (int)strdup(yytext);    return LENGTH;}
+"this"										     { yylval = (int)strdup(yytext);return THIS;}
+"new"										     { yylval = (int)strdup(yytext);return NEW;}
+"."										     { yylval = (int)strdup(yytext);return POINT;}
+";"										     { yylval = (int)strdup(yytext);return POINT_VIRGULE;}
+","											{ yylval = (int)strdup(yytext);return VIRGULE;}
 
 
-"boolean"									     return BOOLEAN;
-"int"										     return INT;
-"String" 									     return STRING;
+"boolean"									     { yylval = (int)strdup(yytext);return BOOLEAN;}
+"int"										     { yylval = (int)strdup(yytext); return INT;}
+"String" 									     { yylval = (int)strdup(yytext); return STRING;}
 
 
 
 
-{paraouvrante}                                                                       return PAR_OUVRANTE;
-{parafermante}                                                                       return PAR_FERMANTE;
-{acououvrante}                                                                       return ACO_OUVRANTE;
-{acoufermante}                                                                       return ACO_FERMANTE;
-{tabouvrante}                                                                        return TAB_OUVRANTE;
-{tabfermante}                                                                        return TAB_FERMANTE;
+{paraouvrante}                               { yylval = (int)strdup(yytext);return PAR_OUVRANTE;}
+{parafermante}                               { yylval = (int)strdup(yytext);return PAR_FERMANTE;}
+{acououvrante}                               { yylval = (int)strdup(yytext);return ACO_OUVRANTE;}
+{acoufermante}                               { yylval = (int)strdup(yytext);return ACO_FERMANTE;}
+{tabouvrante}                                { yylval = (int)strdup(yytext);return TAB_OUVRANTE;}
+{tabfermante}                                { yylval = (int)strdup(yytext);return TAB_FERMANTE;}
 
 										
-"="	                                                                             return AFFECTATION;
+"="	                                         { yylval = (int)strdup(yytext);return AFFECTATION;}
 
-"&&"                                                                                 return OPERATOR;  
-"<"                                                                                  return OPERATOR; 
-">"                                                                                  return OPERATOR; 
-"+"                                                                                  return OPERATOR; 
-"-"                                                                                  return OPERATOR;   
-"*"                                                                                  return OPERATOR;  
-"!"										    										 return NOT;
-
-
-{id}                                                                                 return ID;  
-{nb}                                                                                 return NUMBER;  
-{bool}                                                                               return BOOL; 
+"&&"                                         { yylval = (int)strdup(yytext);return OPERATOR;  }
+"<"                                          { yylval = (int)strdup(yytext);return OPERATOR; }
+">"                                           { yylval = (int)strdup(yytext);return OPERATOR; }
+"+"                                          { yylval = (int)strdup(yytext);return OPERATOR; }
+"-"                                          { yylval = (int)strdup(yytext);return OPERATOR;   }
+"*"                                           { yylval = (int)strdup(yytext);return OPERATOR;  }
+"!"										    	 { yylval = (int)strdup(yytext);return NOT;}
 
 
-
-{COMMENT_LINE}         								     printf("commentaire line");  
-{COMMENT_LONG}        								     printf("commentaire long");   
+{id}                                           { yylval = (int)strdup(yytext);return ID;  }
+{nb}                                           { yylval = (int)strdup(yytext);return NUMBER;  }
+{bool}                                         { yylval = (int)strdup(yytext);return BOOL; }
 
 
 
+{COMMENT_LINE}         						{ yylval = (int)strdup(yytext);printf("commentaire line");  }
+{COMMENT_LONG}        						 { yylval = (int)strdup(yytext);printf("commentaire long"); }  
 
-{iderrone}                    {fprintf(stderr," illegal identifier \'%s\' on line :%d\n",yytext,yylineno);}
-{COMMENT_BLOC_ouvrant}          {fprintf(stderr," comment ouvert \'%s\' on line :%d\n",yytext,yylineno);}
-{comment_fermant}		{fprintf(stderr," comment fermant \'%s\' on line :%d\n",yytext,yylineno);}	
+
+
+
+{iderrone}                    {yylval = (int)strdup(yytext); fprintf(stderr," illegal identifier \'%s\' on line :%d\n",yytext,yylineno);}
+{COMMENT_BLOC_ouvrant}          {yylval = (int)strdup(yytext); fprintf(stderr," comment ouvert \'%s\' on line :%d\n",yytext,yylineno);}
+{comment_fermant}		{yylval = (int)strdup(yytext); fprintf(stderr," comment fermant \'%s\' on line :%d\n",yytext,yylineno);}	
 
 
 
