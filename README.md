@@ -5,8 +5,9 @@ This projects contain a Java compiler built with C language, as well as a text e
 ### Run the application
 ```
 python .\main.py
-```
-![execution](https://github.com/maissa-gallah/mini-java-compilateur/blob/main/execution2.PNG)
+``` 
+#### lexical, syntactic, semantic analysis and computer code
+![execution](https://github.com/maissa-gallah/mini-java-compilateur/blob/main/codemachine.PNG)
 
 ### Execute the compiler
 
