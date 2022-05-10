@@ -16,6 +16,8 @@ typedef struct node {
     struct node* next;
    
 } Node;
+
+int search_index_element_code(char * id);
   
 int search_index(); 
 

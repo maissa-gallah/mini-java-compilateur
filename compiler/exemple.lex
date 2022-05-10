@@ -89,10 +89,16 @@ COMMENT_BLOC_ouvrant 	   {comment_ouvrant}([^*]|\*+[^*/])*\*+
 "&&"                                         { yylval = (int)strdup(yytext);return OPERATOR;  }
 "<"                                          { yylval = (int)strdup(yytext);return OPERATOR; }
 ">"                                           { yylval = (int)strdup(yytext);return OPERATOR; }
+"<="                                          { yylval = (int)strdup(yytext);return OPERATOR; }
+">="                                           { yylval = (int)strdup(yytext);return OPERATOR; }
 "+"                                          { yylval = (int)strdup(yytext);return OPERATOR; }
 "-"                                          { yylval = (int)strdup(yytext);return OPERATOR;   }
 "*"                                           { yylval = (int)strdup(yytext);return OPERATOR;  }
+"!="										  { yylval = (int)strdup(yytext);return OPERATOR;}
+"=="										   { yylval = (int)strdup(yytext);return OPERATOR;}
+"/"										   { yylval = (int)strdup(yytext);return OPERATOR;}
 "!"										    	 { yylval = (int)strdup(yytext);return NOT;}
+
 
 
 {id}                                           { yylval = (int)strdup(yytext);return ID;  }

@@ -39,20 +39,13 @@ int  modify(char * id, char * scope, char * type,   int test_init ,int test_use,
   
     if (start == NULL)
         return -1;
-  
-    while (start != NULL) {
-        if (strcmp(start->identifier,id)) {
+
             start->scope = scope;
             start->type = type;
             start->test_init = test_init;
             start->test_use = test_use;
             start->nbr_args = nbr_args;
-            return 1;
-        }
-        start = start->next;
-    }
-  
-    return 0; // id not found
+            return 1;   
 }
   
 //------------------------------------------------------- Function to find an identifier
@@ -96,6 +89,7 @@ void  insert_declaration(char * id, char * scope, char * type,   int test_init ,
 //------------------------------------------------------- Verifier qu'une variable declaree est bien utilisee => parcours table
 
 void  verif_var_dec_bien_init_use(){
+
 	int i;
     for ( i = 0; i < MAX; i++){
     	Node * current = head[i] ; 
@@ -130,8 +124,20 @@ void use_var(char * id)
         {
         printf("\nvariable non decalree .\n");
        }
+}
 
+//------------------------------------------------------- search index element
 
+int search_index_element_code(char * id){
+    Node* x=find(id);
+    int i;
+    for (i = 0; i< 100; i++){
+        if (head[i] == x ){
+            return i;
+        }
+    }
+    printf("element not found");
+    return -1 ;
 }
 //------------------------------------------------------- Function to initialize var
 
@@ -148,13 +154,14 @@ void  init_var(char * id)
         {
         printf("\nvariable non decalree .\n");
        }
+       return x->identifier;
 
 
 }
 
 
 void print(Node * node){
-    printf("%s  scope=%s type=%s , %d %d , args=%d \n", node->identifier, node->scope, node->type,node->test_init, node->test_use, node->nbr_args );
+    
 }
 
 
