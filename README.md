@@ -6,7 +6,7 @@ This projects contain a Java compiler built with C language, as well as a text e
 ```
 python .\main.py
 ```
-![execution](https://github.com/maissa-gallah/mini-java-compilateur/blob/main/execution.PNG)
+![execution](https://github.com/maissa-gallah/mini-java-compilateur/blob/main/execution2.PNG)
 
 ### Execute the compiler
 
